@@ -63,7 +63,10 @@ class MultiMCP:
         for config in self.server_configs:
             try:
                 if config.get("sse") is True:
-                    async with sse_client("http://127.0.0.1:7172/sse") as (read, write):
+                    host = config.get("host")
+                    port = config.get("port")
+                    host_port = "http://" + host + ":" + str(port) + "/sse"
+                    async with sse_client(host_port) as (read, write):
                         await self.client_main_init(read, write, config)
                 else:
                     params = StdioServerParameters(
@@ -102,7 +105,10 @@ class MultiMCP:
 
         config = entry["config"]
         if config.get("sse") is True:
-            async with sse_client("http://127.0.0.1:7172/sse") as (read, write):
+            host = config.get("host")
+            port = config.get("port")
+            host_port = "http://" + host + ":" + str(port) + "/sse"
+            async with sse_client(host_port) as (read, write):
                 return await self.client_main(read, write, tool_name, arguments)
         else:
             params = StdioServerParameters(

@@ -116,15 +116,27 @@ The project follows a modular architecture with the following key components:
 
 ## Usage
 
-1. Start the bot:
+1. Start the gsheet_server using sse:
+   ```bash
+   python gsheet_server.py sse
+   ```
+
+2. Start the bot:
    ```bash
    python telegram_bot.py
    ```
 
-2. In Telegram:
+3. In Telegram:
    - Start a chat with your bot
    - Send any query
    - The bot will process your request and respond
+
+## Demo
+
+Watch a demo of the Telegram bot and Agents in action:
+
+[![Smart Bookmark Demo](https://img.youtube.com/vi/HSb1GKVXMnE/0.jpg)](https://youtu.be/HSb1GKVXMnE)
+
 
 ## Project Structure
 
@@ -173,10 +185,6 @@ Key dependencies include:
 4. Push to the branch
 5. Create a Pull Request
 
-## License
 
-[Add your license information here]
 
-## Support
 
-For support, please [add your support contact information]

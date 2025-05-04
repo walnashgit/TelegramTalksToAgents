@@ -6,6 +6,7 @@ A Model Context Protocol (MCP) server built with FastMCP for interacting with Go
 
 import base64
 import os
+import sys
 from typing import List, Dict, Any, Optional, Union
 import json
 from dataclasses import dataclass
@@ -961,13 +962,21 @@ def start_sse():
 
     uvicorn.run(app, host=args.host, port=args.port) 
 
-def main():
-    # Run the server
-    print("starting gsheet sse server...")
-    # mcp.run()
-    # mcp.run("sse")
-    start_sse()
-    print("gsheet server sse started")
-
 if __name__ == "__main__":
-    main()
+    # Check if running with mcp dev command
+    print("STARTING")
+    if len(sys.argv) > 1:
+        if sys.argv[1] == "dev":
+            print("STARTING without transport for dev server")
+            mcp.run() 
+        elif sys.argv[1] == "sse":
+            sys.argv.remove("sse")
+            print("STARTING sse server")
+            start_sse()
+     # Run without transport for dev server
+    else:
+        print("STARTING with stdio for direct execution")
+        mcp.run(transport="stdio")
+else: 
+    print("starting sse...")
+    start_sse()

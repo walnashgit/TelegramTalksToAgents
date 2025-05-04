@@ -37,6 +37,8 @@ mcp_servers:
   - id: gsheet
     script: gsheet_server.py
     sse: True
+    host: 127.0.0.1
+    port: 7172
     cwd: /Users/avinashkumaragarwal/Me/EAGV1/S8MCPGoesToInternet/mcp
 
 
